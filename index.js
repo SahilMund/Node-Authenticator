@@ -81,11 +81,13 @@ app.use("/", require("./routes"));
 app.set("view engine", "ejs");
 app.set("views", "./views");
 
-app.listen( process.env.PORT, function (err) {
+const PORT = process.env.PORT || 8000;
+
+app.listen( PORT, function (err) {
   if (err) {
     console.log(`Error in running the server: ${err}`);
   }
 
-  console.log(`Server is running on port: ${process.env.PORT} ..........`);
+  console.log(`Server is running on port: ${PORT} ..........`);
 });
 
