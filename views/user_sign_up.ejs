@@ -1,0 +1,85 @@
+<link rel="stylesheet" href="/css/user_forms.css" />
+
+<section class="container forms">
+  <div class="form signup-form">
+    <div class="form-content">
+      <header>Sign Up</header>
+      <form action="/users/create" method="POST" name="Login_Form">
+        <div class="field input-field">
+          <input
+            type="hidden"
+            id="g-recaptcha-response"
+            name="g-recaptcha-response"
+          />
+          <input type="hidden" name="action" value="validate_captcha" />
+          <input type="text" name="name" placeholder="Your Name" required />
+        </div>
+        <div class="field input-field">
+          <input
+            type="email"
+            class="input"
+            name="email"
+            placeholder="Email Address"
+            required
+            autofocus=""
+          />
+        </div>
+
+        <div class="field input-field">
+          <input
+            type="password"
+            placeholder="Password"
+            class="password"
+            name="password"
+            required
+          />
+          <i class="fa-regular fa-eye-slash eye-icon"></i>
+        </div>
+
+        <div class="field input-field">
+          <input
+            type="password"
+            name="confirm_password"
+            placeholder="Confirm Password"
+            required
+          />
+        </div>
+
+        <div class="field button-field">
+          <input
+            type="submit"
+            value="Register"
+            class="btn btn-lg btn-primary btn-block"
+          />
+        </div>
+      </form>
+
+      <div class="form-link">
+        <span
+          >Already have an account?
+          <a href="/users/sign-in" class="link signup-link">Sign In</a></span
+        >
+      </div>
+    </div>
+
+    <div class="line"></div>
+
+    <%- include('_oAuth') -%>
+  </div>
+</section>
+
+<script src="https://www.google.com/recaptcha/api.js?render=6Lf4yq4kAAAAAJPUrU_l3hwv5fiZpn5n-2Dg70fr"></script>
+<script>
+  grecaptcha.ready(function () {
+    // do request for recaptcha token
+    // response is promise with passed token
+    grecaptcha
+      .execute("6Lf4yq4kAAAAAJPUrU_l3hwv5fiZpn5n-2Dg70fr", {
+        action: "validate_captcha",
+      })
+      .then(function (token) {
+        // add token value to form
+        document.getElementById("g-recaptcha-response").value = token;
+      });
+  });
+</script>
